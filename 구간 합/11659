@@ -1,0 +1,15 @@
+n,q = map(int,input().split())
+
+mylist = list(map(int,input().split()))
+
+prefix_sum = [0]
+temp = 0
+
+# 합 배열 만들기
+for i in mylist:
+    temp = temp + i
+    prefix_sum.append(temp)
+
+for i in range(q):
+    s,e = map(int,input().split())
+    print(prefix_sum[e] - prefix_sum[s-1])
