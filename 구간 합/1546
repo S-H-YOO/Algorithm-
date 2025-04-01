@@ -1,0 +1,7 @@
+n = int(input())
+
+grade = list(map(int,input().split()))
+mymax = max(grade)
+sum = sum(grade)
+
+print(sum/mymax*100/n)
