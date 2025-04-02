@@ -1,0 +1,30 @@
+### 투 포인터 이동 원칙
+
+N : 목표값
+
+sum: 합
+
+start_index : 시작값 
+
+end_index : 마지막 값 
+
+- sum > N : sum - start_index; start_index++
+- sum < N : end_index++; sum = sum + end_index;
+- sum == N : end_index++; sum = sum+end_index; count++;
+
+## 일반적으로 정렬 알고리즘의 시간 복잡도 O(nlogn)
+
+1. List A에 저장한 후 오름차순 정렬 
+2. 투 포인터 i,j 를 양쪽 끝에 위치시킨 후 문제의 조건에 적합한 포인터 이동 원칙을 활용하여 탐색을 수행 
+
+### 투 포인터 이동 원칙
+
+i : start_index
+
+j : end_index 
+
+count : 정답값
+
+- A[i] + A[j] > M : j- -;
+- A[i] + A[j] < M : i++;
+- A[i] + A[j] == M : i++; j- -; count++; #양쪽 포인터를 모두 이동시키고 count 증가
