@@ -1,0 +1,21 @@
+from collections import deque
+from queue import PriorityQueue
+import sys
+print = sys.stdout.write
+input = sys.stdin.readline
+
+num = int(input())
+
+myque = PriorityQueue()
+
+for i in range(num):
+    n = int(input())
+    if n == 0:
+        if myque.empty():
+            print('0\n')
+        else:
+            temp = myque.get()
+            print(str((temp[1])) + '\n')
+
+    else :
+        myque.put((abs(n),n))
