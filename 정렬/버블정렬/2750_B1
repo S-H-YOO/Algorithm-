@@ -1,0 +1,20 @@
+import sys
+
+#print = sys.stdout.write
+input = sys.stdin.readline
+
+num = int(input())
+myList = list()
+for i in range(num):
+    x = int(input())
+    myList.append(x)
+
+for i in range(num-1):
+    for j in range(num-1-i):
+        if myList[j] > myList[j+1]:
+            temp = myList[j]
+            myList[j] = myList[j+1]
+            myList[j+1] = temp
+
+for i in range(num):
+    print(myList[i])
