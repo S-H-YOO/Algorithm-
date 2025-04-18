@@ -1,0 +1,44 @@
+'''
+G5
+'''
+import sys
+sys.setrecursionlimit(10000)
+input = sys.stdin.readline
+# N : 사람의 수
+# M : 친구 관계의 수
+N, M = map(int,input().split())
+
+A = [[] for _ in range(N+1)]
+visit = [0] * (N+1)
+finish = False
+
+for i in range(M):
+    a,b = map(int,input().split())
+    A[a].append(b)
+    A[b].append(a)
+
+def DFS(v,depth):
+    global finish
+
+    visit[v] = 1
+    if depth == 5:
+        finish = True
+        return
+
+    for i in A[v]:
+        if not visit[i]:
+            DFS(i, depth+1)
+    visit[v] = False        #백트래킹을 위해서 False로 설정
+
+for i in range(N):
+    DFS(i,1)
+    if finish:
+        break
+
+if finish == 1:
+    print(1)
+
+else :
+    print(0)
+    
+
