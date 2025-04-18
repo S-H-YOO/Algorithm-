@@ -1,0 +1,64 @@
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+n,m,s = map(int,input().split())
+A = [[] for _ in range(n+1)]
+B = [[] for _ in range(n+1)]
+
+
+visited1 = [0] * (n+1)
+visited2 = [0] * (n+1)
+
+
+for i in range(m):
+    v1,v2 = map(int,input().split())
+
+    # 무방향 에지이기 때문에 각 노드에 각각 저장
+    A[v1].append(v2)
+    A[v2].append(v1)
+    B[v1].append(v2)
+    B[v2].append(v1)
+
+for i in range(n+1):
+    A[i].sort()
+    B[i].sort()
+def DFS(start):
+    # visited1 : DFS의 방문 리스트
+    # visited1[start]의 방문을 참으로 설정
+    print(start, end=' ')
+    visited1[start] = 1
+    for i in A[start] :
+        if not visited1[i]:
+            DFS(i)
+
+# DFS의 남은 방문하지 않았던 노드 탐색
+'''
+for i in range(1, n+1):
+    if not visited1[i]:
+        DFS(i)
+'''
+
+def BFS(start):
+    # visited2 : BFS의 방문 리스트
+    # visited2[start]의 방문을 참으로 설정
+    queue = deque()
+    queue.append(start)
+    visited2[start] = 1
+    while queue:
+        # 선입선출이기 때문에 popleft를 이용해서 제일 먼저 들어간 노드를 꺼냄
+        now_node = queue.popleft()
+        print(now_node, end= ' ')
+        for i in B[now_node]:
+            if not visited2[i]:
+                visited2[i] = 1
+                queue.append(i)
+'''
+# BFS의 남은 방문하지 않았던 노드 탐색
+for i in range(1, n+1):
+    if not visited2[i]:
+        BFS(i)
+'''
+DFS(s)
+print()
+BFS(s)
