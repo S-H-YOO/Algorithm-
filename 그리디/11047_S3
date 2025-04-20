@@ -1,0 +1,15 @@
+N, Target = map(int,input().split())
+A = [0] * int(N)
+count = 0
+
+for i in range(N):
+    A[i] = int(input())
+
+for i in range(N - 1, -1, -1):  # 큰 동전부터 확인
+    if A[i] <= Target:
+        count += Target // A[i]
+        Target = Target % A[i]
+    if Target == 0:
+        break
+
+print(count)
