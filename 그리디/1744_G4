@@ -1,0 +1,45 @@
+from queue import PriorityQueue
+
+N = int(input())
+po_que = PriorityQueue()
+ne_que = PriorityQueue()
+
+one = 0
+zero = 0
+sum = 0
+for _ in range(N):
+    num = int(input())
+
+    if num > 1 :
+        po_que.put(num * -1)
+
+    elif num == 0:
+        zero += 1
+
+    elif num == 1:
+        one += 1
+
+    else :
+        ne_que.put(num)
+
+while po_que.qsize() > 1:
+    data1 = po_que.get() * -1
+    data2 = po_que.get() * -1
+
+    sum += data1 * data2
+
+if po_que.qsize() > 0:
+    data1 = po_que.get() * -1
+    sum += data1
+
+while ne_que.qsize() > 1:
+    data1 = ne_que.get()
+    data2 = ne_que.get()
+    sum += data1 * data2
+
+if ne_que.qsize() > 0:
+    if zero == 0:
+        sum += ne_que.get()
+
+sum += one
+print(sum)
